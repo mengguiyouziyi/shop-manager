@@ -1,23 +1,23 @@
+version: '3.8'
+
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: shop-manager-mysql
+  # PostgreSQL database
+  postgres:
+    image: postgres:15
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: shop_manager
-      MYSQL_USER: shopuser
-      MYSQL_PASSWORD: shoppassword
+      POSTGRES_DB: shop_manager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - shop-network
 
+  # Redis for caching and sessions
   redis:
-    image: redis:6.0-alpine
-    container_name: shop-manager-redis
+    image: redis:7-alpine
     ports:
       - "6379:6379"
     volumes:
@@ -25,54 +25,83 @@ services:
     networks:
       - shop-network
 
+  # Backend API service
   backend:
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: shop-manager-backend
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: mysql://shopuser:shoppassword@mysql:3306/shop_manager
-      REDIS_URL: redis://redis:6379
-      JWT_SECRET: your-super-secret-jwt-key
     ports:
-      - "3001:3001"
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/shop_manager
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production
     depends_on:
-      - mysql
+      - postgres
       - redis
+    volumes:
+      - ./backend/uploads:/app/uploads
     networks:
       - shop-network
+    restart: unless-stopped
 
+  # Frontend service
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: shop-manager-frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    networks:
-      - shop-network
-
-  nginx:
-    image: nginx:alpine
-    container_name: shop-manager-nginx
     ports:
       - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/ssl:/etc/nginx/ssl
     depends_on:
-      - frontend
       - backend
     networks:
       - shop-network
+    restart: unless-stopped
+
+  # Nginx reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - shop-network
+    restart: unless-stopped
+
+  # Monitoring with Prometheus and Grafana
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - shop-network
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - shop-network
+    restart: unless-stopped
 
 volumes:
-  mysql_data:
+  postgres_data:
   redis_data:
+  grafana_data:
 
 networks:
   shop-network:
