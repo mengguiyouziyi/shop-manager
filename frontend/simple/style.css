@@ -1,0 +1,308 @@
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* 主布局 */
+.layout {
+    height: 100vh;
+    display: flex;
+}
+
+/* 左侧导航栏 */
+.sidebar {
+    width: 250px;
+    background-color: #304156;
+    color: #bfcbd9;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.logo {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #435266;
+}
+
+.logo h2 {
+    margin: 0;
+    color: #409eff;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nav-menu {
+    margin-top: 20px;
+}
+
+.nav-item {
+    display: block;
+    padding: 15px 20px;
+    color: #bfcbd9;
+    text-decoration: none;
+    border-bottom: 1px solid #435266;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: #263445;
+    color: #409eff;
+}
+
+.nav-item.active {
+    background-color: #1890ff;
+    color: #fff;
+    border-left: 4px solid #fff;
+}
+
+/* 右侧主内容区域 */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 顶部用户信息栏 */
+.top-header {
+    background: #fff;
+    border-bottom: 1px solid #e4e7ed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 60px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #606266;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.username {
+    font-size: 14px;
+    color: #606266;
+}
+
+.logout-btn {
+    padding: 6px 12px;
+    background: #f56c6c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background: #e74c3c;
+}
+
+/* 移动端菜单按钮 */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #606266;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.mobile-menu-btn:hover {
+    background-color: #f5f7fa;
+}
+
+/* 主要内容区域 */
+.main-content {
+    flex: 1;
+    background-color: #f5f7fa;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* 页面内容 */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page h1 {
+    color: #303133;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.page p {
+    color: #606266;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* 快速操作区域 */
+.quick-actions {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h3 {
+    color: #303133;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    padding: 12px 24px;
+    background: #409eff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background: #337ecc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(64, 158, 255, 0.3);
+}
+
+/* 返回按钮 */
+.page button {
+    padding: 10px 20px;
+    background: #67c23a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.page button:hover {
+    background: #5daf34;
+}
+
+/* 滚动条样式 */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #263445;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #435266;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #5a6c7d;
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        z-index: 1000;
+        transform: translateX(0);
+    }
+    
+    .sidebar.mobile-open {
+        transform: translateX(250px);
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .main-container {
+        margin-left: 0;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0 15px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .page h1 {
+        font-size: 20px;
+    }
+    
+    .quick-actions {
+        padding: 15px;
+    }
+}

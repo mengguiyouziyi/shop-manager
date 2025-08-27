@@ -1,0 +1,67 @@
+{
+  "summary": {
+    "total_tests": 5,
+    "passed_tests": 5,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "total_duration": 0.44825100898742676,
+    "timestamp": "2025-08-27T11:03:17.056191"
+  },
+  "suite_results": {
+    "基础设施测试": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "duration": 0.44806361198425293
+    },
+    "API测试": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "duration": 0.0
+    },
+    "前端测试": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "duration": 5.817413330078125e-05
+    }
+  },
+  "detailed_results": [
+    {
+      "name": "test_database_connection",
+      "success": true,
+      "message": "测试通过",
+      "duration": 0.17392992973327637,
+      "timestamp": "2025-08-27T11:03:16.781895"
+    },
+    {
+      "name": "test_config_loading",
+      "success": true,
+      "message": "测试通过",
+      "duration": 2.86102294921875e-06,
+      "timestamp": "2025-08-27T11:03:16.781927"
+    },
+    {
+      "name": "test_basic_imports",
+      "success": true,
+      "message": "测试通过",
+      "duration": 0.27413082122802734,
+      "timestamp": "2025-08-27T11:03:17.056067"
+    },
+    {
+      "name": "test_api_endpoints",
+      "success": true,
+      "message": "测试通过",
+      "duration": 0.0,
+      "timestamp": "2025-08-27T11:03:17.056107"
+    },
+    {
+      "name": "test_frontend_build",
+      "success": true,
+      "message": "测试通过",
+      "duration": 5.817413330078125e-05,
+      "timestamp": "2025-08-27T11:03:17.056174"
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+/* 侧边栏样式 - Element Plus Menu 自定义主题 */
+
+/* 侧边栏容器 */
+.sidebar-container {
+  width: 260px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1F2D3D 0%, #2C3E50 100%);
+  border-right: 1px solid #34495E;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar-container.collapsed {
+  width: 64px;
+}
+
+/* Logo 区域 */
+.sidebar-logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #34495E;
+  background: rgba(31, 45, 61, 0.95);
+}
+
+.logo-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 24px;
+  color: #409EFF;
+}
+
+.logo-text {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-container.collapsed .logo-text {
+  opacity: 0;
+  width: 0;
+}
+
+/* Element Plus Menu 自定义样式 */
+.sidebar-menu {
+  border: none !important;
+  background: transparent !important;
+  padding: 16px 0;
+}
+
+/* 菜单组标题 */
+.menu-group-title {
+  padding: 8px 20px;
+  font-size: 12px;
+  color: #8A97A8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-top: 16px;
+  border-bottom: 1px solid #34495E;
+  margin-bottom: 8px;
+}
+
+.sidebar-container.collapsed .menu-group-title {
+  display: none;
+}
+
+/* 菜单项样式 */
+.el-menu-item {
+  height: 44px !important;
+  line-height: 44px !important;
+  margin: 2px 8px !important;
+  border-radius: 6px !important;
+  color: #ECF0F1 !important;
+  transition: all 0.3s ease !important;
+  background: transparent !important;
+}
+
+.el-menu-item:hover {
+  background: rgba(64, 158, 255, 0.1) !important;
+  color: #409EFF !important;
+}
+
+.el-menu-item.is-active {
+  background: linear-gradient(90deg, #409EFF, #2980B9) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3);
+}
+
+/* 子菜单样式 */
+.el-sub-menu {
+  margin: 2px 8px !important;
+}
+
+.el-sub-menu__title {
+  height: 44px !important;
+  line-height: 44px !important;
+  border-radius: 6px !important;
+  color: #ECF0F1 !important;
+  transition: all 0.3s ease !important;
+  background: transparent !important;
+}
+
+.el-sub-menu__title:hover {
+  background: rgba(64, 158, 255, 0.1) !important;
+  color: #409EFF !important;
+}
+
+.el-sub-menu.is-active .el-sub-menu__title {
+  color: #409EFF !important;
+}
+
+.el-sub-menu.is-opened .el-sub-menu__title {
+  background: rgba(64, 158, 255, 0.05) !important;
+}
+
+/* 子菜单内容 */
+.el-sub-menu .el-menu {
+  background: rgba(25, 35, 45, 0.8) !important;
+  border-radius: 6px;
+  margin: 4px 0;
+  padding: 4px 0;
+}
+
+.el-sub-menu .el-menu-item {
+  margin: 0 8px !important;
+  padding-left: 48px !important;
+  font-size: 13px;
+}
+
+/* 图标样式 */
+.menu-icon {
+  font-size: 16px;
+  margin-right: 12px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar-container.collapsed .menu-icon {
+  margin-right: 0;
+}
+
+/* 折叠状态下隐藏文字 */
+.sidebar-container.collapsed .el-menu-item span:not(.menu-icon),
+.sidebar-container.collapsed .el-sub-menu__title span:not(.menu-icon) {
+  opacity: 0;
+  width: 0;
+  display: none;
+}
+
+/* 折叠按钮 */
+.collapse-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  background: #409EFF;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  z-index: 1000;
+}
+
+.collapse-button:hover {
+  background: #2980B9;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.collapse-icon {
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-container.collapsed .collapse-icon {
+  transform: rotate(180deg);
+}
+
+/* 滚动条样式 */
+.sidebar-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+  background: #263445;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb {
+  background: #435266;
+  border-radius: 3px;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb:hover {
+  background: #5A6C7D;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .sidebar-container {
+    width: 220px;
+  }
+  
+  .sidebar-container.collapsed {
+    width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    position: fixed;
+    left: -260px;
+    z-index: 1000;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar-container.mobile-open {
+    left: 0;
+  }
+  
+  .sidebar-container.collapsed {
+    width: 260px;
+    left: -260px;
+  }
+  
+  .sidebar-container.collapsed.mobile-open {
+    left: 0;
+  }
+  
+  /* 移动端遮罩 */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+  }
+  
+  .sidebar-overlay.visible {
+    display: block;
+  }
+}
+
+/* 动画效果 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.el-menu-item,
+.el-sub-menu__title {
+  animation: slideIn 0.3s ease;
+}
+
+/* 权限控制样式 */
+.menu-item-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 加载状态 */
+.menu-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.menu-loading-spinner {
+  color: #409EFF;
+}
